@@ -1,45 +1,49 @@
+// models.ts
 export interface AnswerByIdQuery {
-    id: string // ID of the answer
+  id: string;
 }
 
 export interface ScoreByIsinQuery {
-    isin: string // ISIN of the target company
-    date?: string //  date of the score
+  isin: string;
+  start?: string;
+  end?: string;
 }
 
 export interface AnswersQuery {
-    isin?: string // ISIN of the target company
-    start?: string // start date of the query
-    end?: string // end date of the query
-    ids?: string // ids of the answers to include, separated by a comma
-    user?: string // ids of the answers to include, separated by a comma
+  isin?: string;
+  start?: string; // ISO 8601
+  end?: string; // ISO 8601
+  ids?: string; // comma-separated
+  user?: string;
+  limit?: string;
+  offset?: string;
 }
 
 export interface Answer {
-    value: number
-    source: string
-    created: string // for example "2021-01-16T11:51:59.000Z"
-    skip: boolean
-    id: string
-    user: string
-    company: Company
-    question: Question
+  value: number;
+  source: string;
+  created: string; // ISO 8601
+  skip: boolean;
+  id: string;
+  user: string;
+  company: Company;
+  question: Question;
 }
 
 export interface Company {
-    standby: false
-    title: string
-    tid: number
-    isin: string
-    id: number
+  standby: boolean;
+  title: string;
+  tid: number;
+  isin: string;
+  id: number;
 }
 
 export interface Question {
-    fullText: string
-    shortText: string
-    tag: string
-    id: string
-    isPublic: boolean
-    isActive: boolean
-    translations?: Record<string, Partial<Question>>
+  fullText: string;
+  shortText: string;
+  tag: string;
+  id: string;
+  isPublic: boolean;
+  isActive: boolean;
+  translations?: Record<string, Partial<Question>>;
 }
